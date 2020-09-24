@@ -3,7 +3,7 @@ import React from 'react'
 const NoDataControl = ({ title }) => {
   return (
     <div
-      className="row justify-content-center align-self-center"
+      className="row justify-content-center align-self-center test-component"
       style={{ marginTop: '150px' }}
     >
       <div className="text-center">

@@ -1,9 +1,17 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
+//import App from '../components/App'
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+import React from 'react'
+import render from 'riteway/render-component'
+import { describe } from 'riteway'
+
+describe('rendering App Component', async assert => {
+  const $ = render(<div className="test-component">testing</div>)
+  assert({
+    given: 'What Component',
+    should: 'render markup with provided props',
+    actual: $('.test-component')
+      .html()
+      .trim(),
+    expected: 'testing'
+  })
+})
