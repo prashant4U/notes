@@ -31,7 +31,6 @@ export const createNote = formValues => {
       ...formValues,
       userId: userId
     })
-
     dispatch({
       type: CREATE_NOTE,
       payload: response.data

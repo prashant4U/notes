@@ -3,6 +3,7 @@ import { reducer as formReducer } from 'redux-form'
 import { CREATE_NOTE, EDIT_NOTE } from '../actions/types'
 import noteReducer from '../reducers/noteReducer'
 import selectedNoteReducer from '../reducers/selectedNoteReducer'
+import noteToDeleteReducer from '../reducers/noteToDeleteReducer'
 
 export default combineReducers({
   form: formReducer.plugin({
@@ -18,5 +19,6 @@ export default combineReducers({
     }
   }),
   notes: noteReducer,
-  note: selectedNoteReducer
+  note: selectedNoteReducer,
+  selected_note: noteToDeleteReducer
 })

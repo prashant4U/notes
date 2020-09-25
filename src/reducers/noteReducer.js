@@ -9,7 +9,6 @@ import {
 export default (state = [], action) => {
   switch (action.type) {
     case CREATE_NOTE:
-    case FETCH_NOTE:
       return [...state, action.payload[0]]
     case DELETE_NOTE:
       return _.omit(state, action.payload)

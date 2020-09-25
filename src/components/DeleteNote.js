@@ -16,9 +16,9 @@ class DeleteNote extends Component {
         onClick={() => {
           let { id } = this.props.match.params
           this.props.deleteNote(id).then(() => {
-            this.props.selectNote({}).then(() => {
-              history.push('/notes')
-            })
+            // this.props.selectNote({}).then(() => {
+            //   history.push('/notes')
+            // })
           })
         }}
         className="btn btn-danger"
@@ -46,7 +46,7 @@ class DeleteNote extends Component {
         <Modal
           title="Delete Note"
           description={`Are you sure you want to delete note with title: ${this
-            .props.note && this.props.note.title}?`}
+            .props.selected_note && this.props.selected_note.title}?`}
           actions={this.actions}
           onDissmiss={this.onDissmiss}
         />
@@ -57,7 +57,7 @@ class DeleteNote extends Component {
 
 const mapStatesToProps = (state, ownProps) => {
   return {
-    note: state.note
+    selected_note: state.selected_note
   }
 }
 
