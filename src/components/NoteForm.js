@@ -3,6 +3,7 @@ import _ from 'lodash'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { selectNote } from '../actions'
+import { MdAdd, MdArrowBack } from 'react-icons/md'
 
 class NoteForm extends Component {
   renderError = ({ touched, error }) => {
@@ -26,6 +27,7 @@ class NoteForm extends Component {
           className="form-control"
           placeholder="Enter Title"
           type="text"
+          autoFocus
         />
         <div>{this.renderError(meta)}</div>
       </div>
@@ -53,16 +55,36 @@ class NoteForm extends Component {
   render() {
     return (
       <div>
-        <div className="form-group mb-0 text-right pt-4">
-          <button
-            className="btn btn btn-outline-dark"
-            onClick={() => {
-              this.props.showHideFormControl(true)
-            }}
-          >
-            + Add Note
-          </button>
-        </div>
+        {this.props.showForm || this.props.isEdit ? (
+          <div className="form-group mb-0 text-left pt-4 mt-4 mb-4">
+            <button
+              className="btn btn-light cursor"
+              style={{
+                float: 'right',
+                top: '30px',
+                position: 'absolute'
+              }}
+              onClick={() => {
+                this.props.showHideFormControl(false)
+              }}
+            >
+              <MdArrowBack size={24} />
+            </button>
+            <h4>{this.props.isEdit ? 'Edit Note' : 'Add Note'}</h4>
+            <hr></hr>
+          </div>
+        ) : (
+          <div className="form-group mb-0 text-right">
+            <button
+              className="btn btn btn-outline-dark"
+              onClick={() => {
+                this.props.showHideFormControl(true)
+              }}
+            >
+              <MdAdd size={24} /> Add Note
+            </button>
+          </div>
+        )}
         {this.props.showForm || this.props.isEdit ? (
           <form
             className="needs-validation"
@@ -103,8 +125,8 @@ class NoteForm extends Component {
 
 const validate = formValues => {
   let errorObj = {}
-  if (!formValues.title) errorObj.title = 'please Enter title!'
-  if (!formValues.body) errorObj.body = 'please Enter body text!'
+  if (!formValues.title) errorObj.title = 'please Enter Title.'
+  if (!formValues.body) errorObj.body = 'please Enter Body Text.'
   return errorObj
 }
 

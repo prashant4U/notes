@@ -3,14 +3,14 @@ import React from 'react'
 const Header = () => {
   return (
     <nav
-      className="navbar navbar-expand-lg py-lg-3 navbar-light"
+      className="navbar navbar-expand-lg navbar-light"
       style={{
         backgroundColor: '#f7f7f7'
       }}
     >
-      <div className="container">
+      <div className="container-fluid">
         <a href="/" className="navbar-brand mr-lg-5">
-          <h2>G+ Notes</h2>
+          <h4 className="text-muted">G+ Notes</h4>
         </a>
       </div>
     </nav>

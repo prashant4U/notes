@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchNote, deleteNote } from '../actions'
+import { fetchNote, deleteNote, selectNote } from '../actions'
 import Modal from './Modal'
 import history from '../history'
 
@@ -16,7 +16,9 @@ class DeleteNote extends Component {
         onClick={() => {
           let { id } = this.props.match.params
           this.props.deleteNote(id).then(() => {
-            history.push('/notes')
+            this.props.selectNote({}).then(() => {
+              history.push('/notes')
+            })
           })
         }}
         className="btn btn-danger"
@@ -61,5 +63,9 @@ const mapStatesToProps = (state, ownProps) => {
 
 export default connect(
   mapStatesToProps,
-  { fetchNote, deleteNote }
+  {
+    fetchNote,
+    deleteNote,
+    selectNote
+  }
 )(DeleteNote)

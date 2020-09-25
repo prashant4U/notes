@@ -3,10 +3,12 @@ import _ from 'lodash'
 import { connect } from 'react-redux'
 import { createNote, editNote, fetchNotes, selectNote } from '../actions'
 import NoteForm from './NoteForm'
+import Loader from './Loader'
 
 class createNoteContainer extends Component {
-  state = { showForm: false }
+  state = { showForm: false, showLoader: false }
   onSubmitHandler = formValues => {
+    this.setState({ ...this.state, showLoader: true })
     if (this.props.isEdit) {
       this.props
         .editNote(this.props.selectedNote._id, {
@@ -14,23 +16,32 @@ class createNoteContainer extends Component {
           btnAction: 'Update'
         })
         .then(() => {
-          this.props.fetchNotes()
+          this.props.fetchNotes().then(() => {
+            this.props.selectNote({})
+            this.setState({ ...this.state, showLoader: false })
+          })
         })
     } else {
-      this.props.createNote(formValues).then(() => {})
-      this.props.selectNote({})
+      this.props.createNote(formValues).then(() => {
+        this.setState({ ...this.state, showLoader: false })
+        this.props.selectNote({})
+      })
       this.setState({ showForm: false })
     }
   }
 
   showHideFormControl = showForm => {
-    this.setState({ showForm })
-    this.props.selectNote({})
+    this.props.selectNote({}).then(() => {
+      this.setState({
+        showForm
+      })
+    })
   }
 
   render() {
     return (
       <div>
+        {this.state.showLoader ? <Loader /> : ''}
         <NoteForm
           onSubmitHandler={this.onSubmitHandler}
           showHideFormControl={this.showHideFormControl}

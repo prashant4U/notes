@@ -4,6 +4,8 @@ import NoteList from './NoteList'
 import CreateNote from './CreateNote'
 
 function NotesContainer() {
+  let clientHeight =
+    document.getElementsByTagName('html')[0].clientHeight - 100 + 'px'
   return (
     <div className="row justify-content-left">
       <div className="col-lg-4 col-sm-6 pr-0">
@@ -11,7 +13,7 @@ function NotesContainer() {
           <div
             className="card-body text-left"
             style={{
-              height: '600px',
+              height: clientHeight,
               overflow: 'auto',
               backgroundColor: '#ffffff'
             }}
@@ -25,7 +27,7 @@ function NotesContainer() {
           <div
             className="card-body"
             style={{
-              height: '600px',
+              height: clientHeight,
               overflow: 'auto',
               backgroundColor: '#ffffff'
             }}
