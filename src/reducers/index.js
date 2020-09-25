@@ -1,15 +1,23 @@
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
-import { CREATE_NOTE } from '../actions/types'
+import {
+  CREATE_NOTE,
+  EDIT_NOTE,
+  DELETE_NOTE,
+  SELECTED_NOTE
+} from '../actions/types'
 import noteReducer from '../reducers/noteReducer'
 import selectedNoteReducer from '../reducers/selectedNoteReducer'
 
 export default combineReducers({
   form: formReducer.plugin({
     NoteForm: (state, action) => {
-      // <------ 'account' is name of form given to reduxForm()
+      // <------ 'NoteForm' is name of form given to reduxForm()
       switch (action.type) {
         case CREATE_NOTE:
+        case EDIT_NOTE:
+        case DELETE_NOTE:
+        case SELECTED_NOTE:
           return undefined // <--- blow away form data
         default:
           return state

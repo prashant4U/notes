@@ -28,6 +28,7 @@ class NoteForm extends Component {
           placeholder="Enter Title"
           type="text"
           autoFocus
+          required
         />
         <div>{this.renderError(meta)}</div>
       </div>
@@ -46,6 +47,7 @@ class NoteForm extends Component {
           placeholder="Enter Body"
           type="text"
           rows="10"
+          required
         />
         <div>{this.renderError(meta)}</div>
       </div>
@@ -130,7 +132,7 @@ const validate = formValues => {
   return errorObj
 }
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = state => {
   return {
     initialValues: !_.isEmpty(state.note)
       ? state.note
