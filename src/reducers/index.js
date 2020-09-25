@@ -16,7 +16,6 @@ export default combineReducers({
       switch (action.type) {
         case CREATE_NOTE:
         case EDIT_NOTE:
-        case DELETE_NOTE:
         case SELECTED_NOTE:
           return undefined // <--- blow away form data
         default:
